@@ -1,5 +1,4 @@
-__author__ = 'Lord Ache'
-from django.views.decorators.csrf import csrf_exempt
+__author__ = 'Mircea  Iordache'
 
 # Uses
 bulbs = [-1, 100, 0, 100]
@@ -12,6 +11,7 @@ bulbs_ids = [-1, 23, 24, 25]
 def set_light_bulb_intensity(intensity, bulb_id):
     # TODO
     bulbs[bulb_id] = intensity
+    servo.set_servo(buldbs_ids[bulb_id], intensity*199.99) 
 
 # Should contain:
 # BULB_ID - Light bulb id.
@@ -22,4 +22,4 @@ def get_light_bulb_intensity(bulb_id):
 # Gets the temperature as a float value.
 def get_temperature():
     # TODO
-    return -1
+    return GPIO.input(12)

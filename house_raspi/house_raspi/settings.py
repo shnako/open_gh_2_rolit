@@ -10,6 +10,9 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from RPi import GPIO
+from RPIO import PWM
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -20,6 +23,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'ck!pok2_0@r^(0pm=d(^w+w81qo0oh)cbqri7&l-i*f7bs6s8e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(12, GPIO.IN)
+
+servo = PWM.Servo()
+servo.set_servo(23, 0)
+servo.set_servo(24, 0)
+servo.set_servo(25, 0)
+
 DEBUG = True
 
 TEMPLATE_DEBUG = True
