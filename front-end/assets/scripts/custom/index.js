@@ -398,7 +398,7 @@ var Index = function () {
                 var msg = list.append(tpl);
                 input.val("");
                 $('.scroller', cont).slimScroll({
-                    scrollTo: list.height()
+                    scrollTo: list.height(),
                 });
             }
 
