@@ -1,4 +1,29 @@
 {% extends 'layouts/base.html' %}
 {% block content %}
-que pasa cabron
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            {% include 'partials/househeader.html' %}
+							<div class="row">
+								<div class="col-md-4 text-center">
+									<h4>Kitchen</h4>
+									<input class="knob" data-angleoffset=-125 data-anglearc=250 data-fgcolor="#66EE66" value="35">
+                                    <img src="/assets/img/bulb.png" class="bulb" />
+								</div>
+								<div class="col-md-4 text-center">
+									<h4>Bathroom</h4>
+									<input class="knob" data-angleoffset=-125 data-anglearc=250 data-fgcolor="#66EE66" value="35">
+                                    <img src="/assets/img/bulb.png" class="bulb" />
+								</div>
+								<div class="col-md-4 text-center">
+									<h4>Living room</h4>
+									<input class="knob" data-angleoffset=-125 data-anglearc=250 data-fgcolor="#66EE66" value="35">
+                                    <img src="/assets/img/bulb.png" class="bulb" />
+								</div>
+							</div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    <!-- END CONTENT -->
 {% endblock %}

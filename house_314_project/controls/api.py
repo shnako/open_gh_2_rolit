@@ -1,9 +1,9 @@
 __author__ = 'VladIulian'
 from django.views.decorators.csrf import csrf_exempt
-import requests
+import urllib2, urllib
 from django.http import HttpResponse
+from house_314_project.settings import raspi_address
 
-address = '127.0.0.1'
 
 # Sets the light bulb intensity.
 # Should contain:
@@ -11,28 +11,24 @@ address = '127.0.0.1'
 # BULB_ID - Light bulb id.
 @csrf_exempt
 def set_light_bulb_intensity(request):
-    intensity = request.META['HTTP_INTENSITY']
-    bulb_id = request.META['HTTP_BULB_ID']
-    result = requests.get('http://' + address + '/api/set_light_bulb_intensity/', intensity=intensity, bulb_id=bulb_id)
-    return HttpResponse(status=result.status_code)
+    post_data = [('HTTP_INTENSITY', request.META['HTTP_INTENSITY']),('HTTP_BULB_ID', request.META['HTTP_BULB_ID']),]
+    result = urllib2.urlopen('http://' + raspi_address + '/api/set_light_bulb_intensity/', urllib.urlencode(post_data))
+    return HttpResponse(status=result.getcode())
 
 # Should contain:
 # BULB_ID - Light bulb id.
 # Will return an integer value containing the intensity.
 @csrf_exempt
 def get_light_bulb_intensity(request):
-    bulb_id = request.META['HTTP_BULB_ID']
-    result = requests.get('http://' + address + '/api/get_light_bulb_intensity/', bulb_id=bulb_id)
-    if result.status_code == 200:
-        return HttpResponse(result.text, status=200)
-    else:
-        return HttpResponse(status=result.status_code)
+    post_data = [('HTTP_BULB_ID', request.META['HTTP_BULB_ID']),]
+    result = urllib2.urlopen('http://' + raspi_address + '/api/get_light_bulb_intensity/', urllib.urlencode(post_data))
+    return HttpResponse(result.read(), status=result.getcode())
 
 # Gets the temperature as a float value.
 @csrf_exempt
 def get_temperature(request):
-    result = requests.get('http://' + address + '/api/get_temperature/')
-    if result.status_code == 200:
-        return HttpResponse(result.text, status=200)
+    result = urllib2.urlopen('http://' + raspi_address + '/api/get_temperature/')
+    if result.getcode() == 200:
+        return HttpResponse(result.read(), status=200)
     else:
-        return HttpResponse(status=result.status_code)
+        return HttpResponse(status=result.getcode())

@@ -1,1 +1,9 @@
 /* here you can put your own css to customize and override the theme */
+.bulb {
+    width: 30%;
+    height: 30%;
+    display: block;
+    margin: -25px auto 0 auto;
+    max-height: 105px;
+    max-width: 105px;
+}
