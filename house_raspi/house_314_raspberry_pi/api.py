@@ -39,8 +39,9 @@ def get_temperature(request):
     #except:
     #    return HttpResponse(status=418)
 
+#Gets the current consumption as a float value.
 @csrf_exempt
-def get_power_usage(request):
+def get_current_consumption(request):
    #try:
    power_usage = controler.get_power_usage()
    return HttpResponse(power_usage, status=200)

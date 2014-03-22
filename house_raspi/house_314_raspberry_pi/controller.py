@@ -52,6 +52,7 @@ def get_temperature():
    #print ohms
    return tempc
 
-def get_power_usage():
+#Gets the current consumption as a float
+def get_current_consumption():
     # TODO
-    return 0
+    return 0.0

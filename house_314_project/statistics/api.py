@@ -6,7 +6,11 @@ from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt
 def get_current_consumption(request):
     # TODO
-    return None
+    result = requests.get('http://' + address + '/api/get_curret_consumption/')
+    if result.status_code == 200:
+        return HttpResponse(result.text, status=200)
+    else:
+        return HttpResponse(status=result.status_code)
 
 # Gets the average consumption for the specified.
 # Have START_DATE and END_DATE in the request.
