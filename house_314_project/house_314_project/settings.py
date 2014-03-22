@@ -8,7 +8,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
-raspi_address = '192.168.1.102'
+raspi_address = '192.168.1.102:8000'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
