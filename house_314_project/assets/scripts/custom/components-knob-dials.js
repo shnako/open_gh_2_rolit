@@ -10,12 +10,24 @@ var ComponentsKnobDials = function () {
             }
 
             // general knob
+            var beingUpdated = false;
             $(".knob").knob({
                 'dynamicDraw': true,
                 'thickness': 0.2,
                 'tickColorizeValues': true,
-                'skin': 'tron'
-            });  
+                'skin': 'tron',
+                'change': function() {
+                    if (beingUpdated == false) {
+                        beingUpdated = true;
+                        console.log(this.cv);
+                    }
+                }
+            });
+
+            // Don't allow sending many requests
+            setInterval(function() {
+                beingUpdated = false;
+            }, 300);
         }
 
     };

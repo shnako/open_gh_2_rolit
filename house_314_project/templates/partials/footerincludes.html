@@ -51,11 +51,29 @@
         Tasks.initDashboardWidget();
     });
 </script>
-	<script>
-jQuery(document).ready(function() {
-   // initiate layout and plugins
-   App.init();  // set current page
-   ComponentsKnobDials.init();
-});
-	</script>
+<script>
+    jQuery(document).ready(function() {
+        // initiate layout and plugins
+        App.init();  // set current page
+        ComponentsKnobDials.init();
+    });
+</script>
+<script>
+    /*
+    $(document).ready(function() {
+
+
+        $(".bulb").click(function() {
+            $knob = $(this).parents().find("input");
+            alert($knob.cv);
+            if ($knob.val() > 0) {
+                $knob.val("0");
+            } else {
+                $knob.val("100");
+            }
+        });
+
+    });
+    */
+</script>
 <!-- END JAVASCRIPTS -->
