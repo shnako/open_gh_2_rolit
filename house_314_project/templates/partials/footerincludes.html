@@ -58,7 +58,6 @@
 
         // Get current intensity for all lightbulbs
         var url = "/controls/get_light_bulb_intensity/";
-
         $.post(url, {
             "HTTP_BULB_ID": 1
         }).success(function(INTENSITY) {
@@ -91,7 +90,14 @@
             console.log("Failed to retrieve the intensity!");
         });
 
-
+        // Get current consumption
+        var url = "/statistics/get_current_consumption/";
+        $.post(url).success(function(CONSUMPTION) {
+            $("#consumption").html(CONSUMPTION);
+            console.log("Current consumption has been retrieved!");
+        }).fail(function() {
+            console.log("Failed to retrieve current consumption!");
+        });
 
 
 
