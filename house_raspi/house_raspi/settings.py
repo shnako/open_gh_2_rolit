@@ -27,9 +27,6 @@ GPIO.setmode(GPIO.BOARD)
 GPIO.setup(12, GPIO.IN)
 
 servo = PWM.Servo()
-servo.set_servo(23, 0)
-servo.set_servo(24, 0)
-servo.set_servo(25, 0)
 
 DEBUG = True
 

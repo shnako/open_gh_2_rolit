@@ -9,5 +9,5 @@ urlpatterns = patterns('',
     # url(r'^$', 'house_raspi.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^api/', include(house_314_raspberry_pi.urls)),
+    url(r'^api/', include('house_314_raspberry_pi.urls')),
 )

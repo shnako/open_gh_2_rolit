@@ -1,5 +1,8 @@
 __author__ = 'Mircea  Iordache'
 
+from house_raspi.settings import servo
+import RPi.GPIO as GPIO
+
 # Uses
 bulbs = [-1, 100, 0, 100]
 bulbs_ids = [-1, 23, 24, 25]
@@ -10,8 +13,12 @@ bulbs_ids = [-1, 23, 24, 25]
 # BULB_ID - Light bulb id.
 def set_light_bulb_intensity(intensity, bulb_id):
     # TODO
+    if (intensity < 1): 
+       intensity = 1
+    if (intensity == 100):
+       intensity = 99
     bulbs[bulb_id] = intensity
-    servo.set_servo(buldbs_ids[bulb_id], intensity*199.99) 
+    servo.set_servo(bulbs_ids[bulb_id], intensity*200) 
 
 # Should contain:
 # BULB_ID - Light bulb id.
