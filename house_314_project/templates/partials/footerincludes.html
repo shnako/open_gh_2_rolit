@@ -91,8 +91,8 @@
         });
 
         // Get current consumption
-        var url = "/statistics/get_current_consumption/";
-        $.post(url).success(function(CONSUMPTION) {
+        var url2 = "/statistics/get_current_consumption/";
+        $.post(url2).success(function(CONSUMPTION) {
             $("#consumption").html(CONSUMPTION);
             console.log("Current consumption has been retrieved!");
         }).fail(function() {
@@ -100,14 +100,13 @@
         });
 
         // Get current temperature
-        var url = "/controls/get_temperature/";
-        $.post(url).success(function(TEMPERATURE) {
+        var url3 = "/controls/get_temperature/";
+        $.post(url3).success(function(TEMPERATURE) {
             $("#temperature").html(parseInt(TEMPERATURE) + "<sup>o</sup> C");
             console.log("Current temperature has been retrieved!");
         }).fail(function() {
             console.log("Failed to retrieve current temperature!");
         });
-
 
 
     });
