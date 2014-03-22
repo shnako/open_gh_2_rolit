@@ -35,7 +35,7 @@ var ComponentsKnobDials = function () {
             // Don't allow sending many requests
             setInterval(function() {
                 beingUpdated = false;
-            }, 200);
+            }, 500);
         }
 
     };
