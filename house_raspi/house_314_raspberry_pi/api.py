@@ -10,9 +10,11 @@ import controller
 # BULB_ID - Light bulb id.
 @csrf_exempt
 def set_light_bulb_intensity(request):
-    intensity = int(request.META['HTTP_INTENSITY'])
-    bulb_id = int(request.META['HTTP_BULB_ID'])
+    intensity = int(request.POST['HTTP_INTENSITY'])
+    bulb_id = int(request.POST['HTTP_BULB_ID'])
     #try:
+    print intensity
+    print bulb_id
     controller.set_light_bulb_intensity(intensity=intensity, bulb_id=bulb_id)
     return HttpResponse(status=200)
     #except:
@@ -23,7 +25,7 @@ def set_light_bulb_intensity(request):
 # Will return an integer value containing the intensity.
 @csrf_exempt
 def get_light_bulb_intensity(request):
-    bulb_id = int (request.META['HTTP_BULB_ID'])
+    bulb_id = int (request.POST['HTTP_BULB_ID'])
     #try:
     intensity = controller.get_light_bulb_intensity(bulb_id)
     return HttpResponse(intensity, status=200)
@@ -43,7 +45,7 @@ def get_temperature(request):
 @csrf_exempt
 def get_current_consumption(request):
    #try:
-   power_usage = controler.get_power_usage()
+   power_usage = controller.get_current_consumption()
    return HttpResponse(power_usage, status=200)
    #except:
    #    return HttpResponse(status=418)

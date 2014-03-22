@@ -5,7 +5,7 @@ import RPi.GPIO as GPIO
 import math
 
 # Uses
-bulbs = [-1, 100, 0, 100]
+bulbs = [-1, 0, 0, 0]
 bulbs_ids = [-1, 23, 24, 25]
 
 # Sets the light bulb intensity.
@@ -14,7 +14,6 @@ bulbs_ids = [-1, 23, 24, 25]
 # BULB_ID - Light bulb id.
 def set_light_bulb_intensity(intensity, bulb_id):
     # TODO
-
     bulbs[bulb_id] = intensity
 
     if (intensity < 1): 
@@ -54,5 +53,8 @@ def get_temperature():
 
 #Gets the current consumption as a float
 def get_current_consumption():
-    # TODO
-    return 0.0
+    Va = 12*bulbs[1]/100
+    Vb = 12*bulbs[2]/100
+    Vc = 12*bulbs[3]/100
+    power = 1.6*(Va+Vb+Vc)
+    return power
