@@ -3,12 +3,14 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 # Gets the current global consumption from the pi.
+@csrf_exempt
 def get_current_consumption(request):
     # TODO
     return None
 
 # Gets the average consumption for the specified.
 # Have START_DATE and END_DATE in the request.
+@csrf_exempt
 def get_average_consumption(request):
     start_date = request.META['HTTP_START_DATE']
     end_date = request.META['HTTP_END_DATE']
@@ -16,6 +18,7 @@ def get_average_consumption(request):
 
 # Gets the average consumption for the specified area. HARD CODE for demo.
 # Have START_DATE and END_DATE in the request.
+@csrf_exempt
 def get_area_average_consumption(request):
     start_date = request.META['HTTP_START_DATE']
     end_date = request.META['HTTP_END_DATE']
@@ -23,6 +26,7 @@ def get_area_average_consumption(request):
 
 # Gets the average consumption for the specified.
 # Have START_DATE and END_DATE in the request.
+@csrf_exempt
 def get_city_average_consumption(request):
     start_date = request.META['HTTP_START_DATE']
     end_date = request.META['HTTP_END_DATE']
