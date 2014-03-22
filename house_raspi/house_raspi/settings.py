@@ -15,7 +15,6 @@ from RPIO import PWM
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
@@ -44,6 +43,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'house_raspi',
     'house_314_raspberry_pi',
 )
 
@@ -57,8 +57,6 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'house_raspi.urls'
-
-WSGI_APPLICATION = 'house_raspi.wsgi.application'
 
 
 # Database
