@@ -92,12 +92,17 @@
 
         // Get current consumption
         var url2 = "/statistics/get_current_consumption/";
-        $.post(url2).success(function(CONSUMPTION) {
-            $("#consumption").html(CONSUMPTION);
-            console.log("Current consumption has been retrieved!");
-        }).fail(function() {
-            console.log("Failed to retrieve current consumption!");
-        });
+        var cost = 0.13;
+        setInterval(function() {
+            $.post(url2).success(function(CONSUMPTION) {
+                $("#consumption").html(parseInt(CONSUMPTION) + " W");
+                $("#price").html(parseFloat(CONSUMPTION / 1000 * price * 24 * 30, 2) + " £");
+                console.log("Current consumption has been retrieved!");
+            }).fail(function() {
+                console.log("Failed to retrieve current consumption!");
+            });
+        }, 1000);
+
 
         // Get current temperature
         var url3 = "/controls/get_temperature/";
