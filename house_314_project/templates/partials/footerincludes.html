@@ -55,25 +55,65 @@
     jQuery(document).ready(function() {
         // initiate layout and plugins
         App.init();  // set current page
-        ComponentsKnobDials.init();
+
+        // Get current intensity for all lightbulbs
+        var url = "/controls/get_light_bulb_intensity/";
+
+        $.post(url, {
+            "HTTP_BULB_ID": 1
+        }).success(function(INTENSITY) {
+            $("#knob1").val(INTENSITY);
+            console.log("Bulb intensity has been retrieved! ID 1");
+
+            $.post(url, {
+                "HTTP_BULB_ID": 2
+            }).success(function(INTENSITY) {
+                $("#knob2").val(INTENSITY);
+                console.log("Bulb intensity has been retrieved! ID 2");
+
+                $.post(url, {
+                    "HTTP_BULB_ID": 3
+                }).success(function(INTENSITY) {
+                    $("#knob3").val(INTENSITY);
+                    console.log("Bulb intensity has been retrieved! ID 3");
+
+                    ComponentsKnobDials.init();
+
+                }).fail(function() {
+                    console.log("Failed to retrieve the intensity!");
+                });
+
+            }).fail(function() {
+                console.log("Failed to retrieve the intensity!");
+            });
+
+        }).fail(function() {
+            console.log("Failed to retrieve the intensity!");
+        });
+
+
+
+
+
+
     });
 </script>
 <script>
     /*
-    $(document).ready(function() {
+     $(document).ready(function() {
 
 
-        $(".bulb").click(function() {
-            $knob = $(this).parents().find("input");
-            alert($knob.cv);
-            if ($knob.val() > 0) {
-                $knob.val("0");
-            } else {
-                $knob.val("100");
-            }
-        });
+     $(".bulb").click(function() {
+     $knob = $(this).parents().find("input");
+     alert($knob.cv);
+     if ($knob.val() > 0) {
+     $knob.val("0");
+     } else {
+     $knob.val("100");
+     }
+     });
 
-    });
-    */
+     });
+     */
 </script>
 <!-- END JAVASCRIPTS -->
