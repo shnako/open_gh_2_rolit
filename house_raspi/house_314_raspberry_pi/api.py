@@ -38,3 +38,11 @@ def get_temperature(request):
     return HttpResponse(temperature, status=200)
     #except:
     #    return HttpResponse(status=418)
+
+@csrf_exempt
+def get_power_usage(request):
+   #try:
+   power_usage = controler.get_power_usage()
+   return HttpResponse(power_usage, status=200)
+   #except:
+   #    return HttpResponse(status=418)

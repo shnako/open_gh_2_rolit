@@ -48,6 +48,10 @@ def get_temperature():
    t2 = math.pow(c2,3)
    temp = 1/(a+t1+t2)
    tempc = temp - 273.15 - 4
-
-	#print ohms
+   
+   #print ohms
    return tempc
+
+def get_power_usage():
+    # TODO
+    return 0
