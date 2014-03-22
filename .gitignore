@@ -30,3 +30,6 @@ proguard/
 
 # Mac garbage
 .DS_Store
+
+# Python compiled files.
+*.pyc
