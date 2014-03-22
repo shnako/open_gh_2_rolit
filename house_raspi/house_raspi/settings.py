@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 from RPi import GPIO
 from RPIO import PWM
+import serial
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -22,10 +23,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'ck!pok2_0@r^(0pm=d(^w+w81qo0oh)cbqri7&l-i*f7bs6s8e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(12, GPIO.IN)
+
+ser = serial.Serial('/dev/ttyAMA0', 9600, timeout=1)
+ser.open()
 
 servo = PWM.Servo()
+
 
 DEBUG = True
 

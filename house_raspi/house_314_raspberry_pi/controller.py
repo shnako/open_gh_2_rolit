@@ -1,7 +1,8 @@
 __author__ = 'Mircea  Iordache'
 
-from house_raspi.settings import servo
+from house_raspi.settings import servo, ser
 import RPi.GPIO as GPIO
+import math
 
 # Uses
 bulbs = [-1, 100, 0, 100]
@@ -13,11 +14,13 @@ bulbs_ids = [-1, 23, 24, 25]
 # BULB_ID - Light bulb id.
 def set_light_bulb_intensity(intensity, bulb_id):
     # TODO
+
+    bulbs[bulb_id] = intensity
+
     if (intensity < 1): 
        intensity = 1
     if (intensity == 100):
        intensity = 99
-    bulbs[bulb_id] = intensity
     servo.set_servo(bulbs_ids[bulb_id], intensity*200) 
 
 # Should contain:
@@ -29,4 +32,22 @@ def get_light_bulb_intensity(bulb_id):
 # Gets the temperature as a float value.
 def get_temperature():
     # TODO
-    return GPIO.input(12)
+   val = ser.readline()
+   new_val = val.split("\n")
+   volts = float(new_val[0])
+   ohms = (909/volts)- 1000
+
+   lnohm = math.log1p(ohms)
+
+   a = 0.002197222470870
+   b = 0.000161097632222
+   c = 0.000000125008328
+
+   t1 = (b*lnohm)
+   c2 = c*lnohm
+   t2 = math.pow(c2,3)
+   temp = 1/(a+t1+t2)
+   tempc = temp - 273.15 - 4
+
+	#print ohms
+   return tempc
