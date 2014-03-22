@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
-import controls, statistics
+import controls
+import statistics
 
 from django.contrib import admin
 admin.autodiscover()
