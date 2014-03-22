@@ -18,9 +18,7 @@ def set_light_bulb_intensity(intensity, bulb_id):
 
     if (intensity < 1): 
        intensity = 1
-    if (intensity == 100):
-       intensity = 99
-    servo.set_servo(bulbs_ids[bulb_id], intensity*200) 
+    servo.set_servo(bulbs_ids[bulb_id], intensity*100) 
 
 # Should contain:
 # BULB_ID - Light bulb id.
@@ -53,8 +51,8 @@ def get_temperature():
 
 #Gets the current consumption as a float
 def get_current_consumption():
-    Va = 12*bulbs[1]/100
-    Vb = 12*bulbs[2]/100
-    Vc = 12*bulbs[3]/100
+    Va = 12*bulbs[1]/200
+    Vb = 12*bulbs[2]/200
+    Vc = 12*bulbs[3]/200
     power = 1.6*(Va+Vb+Vc)
     return power
