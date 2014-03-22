@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+	{% include 'partials/includes.html' %}
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="page-header-fixed">
+	{% include 'partials/header.html' %}
+<div class="clearfix">
+</div>
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+
+	{% include 'partials/sidebar.html' %}
+
+	{% block content %}{% endblock %}
+
+</div>
+<!-- END CONTAINER -->
+
+{% include 'partials/footer.html' %}
+
+{% include 'partials/footerincludes.html' %}
+</body>
+<!-- END BODY -->
+</html>
