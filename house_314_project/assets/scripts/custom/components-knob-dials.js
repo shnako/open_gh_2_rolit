@@ -18,7 +18,6 @@ var ComponentsKnobDials = function () {
                 'tickColorizeValues': true,
                 'skin': 'tron',
                 'change': function() {
-                    console.log(this);
                     if (beingUpdated == false) {
                         beingUpdated = true;
                         $.post(url, {
