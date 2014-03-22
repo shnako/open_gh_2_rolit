@@ -99,6 +99,14 @@
             console.log("Failed to retrieve current consumption!");
         });
 
+        // Get current temperature
+        var url = "/controls/get_temperature/";
+        $.post(url).success(function(TEMPERATURE) {
+            $("#temperature").html(parseInt(TEMPERATURE) + "<sup>o</sup> C");
+            console.log("Current temperature has been retrieved!");
+        }).fail(function() {
+            console.log("Failed to retrieve current temperature!");
+        });
 
 
 
