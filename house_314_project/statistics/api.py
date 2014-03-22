@@ -1,12 +1,14 @@
 __author__ = 'VladIulian'
 from django.views.decorators.csrf import csrf_exempt
+import requests
+from django.http import HttpResponse
+from house_314_project.settings import raspi_address
 
 
 # Gets the current global consumption from the pi.
 @csrf_exempt
 def get_current_consumption(request):
-    # TODO
-    result = requests.get('http://' + address + '/api/get_curret_consumption/')
+    result = requests.get('http://' + raspi_address + '/api/get_curret_consumption/')
     if result.status_code == 200:
         return HttpResponse(result.text, status=200)
     else:
