@@ -11,19 +11,19 @@ var ComponentsKnobDials = function () {
 
             // general knob
             var beingUpdated = false;
-            var url = "/controls/set_light_bulb_intensity";
+            var url = "/controls/set_light_bulb_intensity/";
             $(".knob").knob({
                 'dynamicDraw': true,
                 'thickness': 0.2,
                 'tickColorizeValues': true,
                 'skin': 'tron',
                 'change': function() {
+                    console.log(this);
                     if (beingUpdated == false) {
                         beingUpdated = true;
-                        //console.log(this.cv);
                         $.post(url, {
-                            'BULB_ID': "1",
-                            'INTENSITY': this.cv
+                            "HTTP_BULB_ID": this.knobId,
+                            "HTTP_INTENSITY": this.cv
                         }).success(function() {
                             console.log("Bulb intensity has been updated!");
                         }).fail(function() {
@@ -36,7 +36,7 @@ var ComponentsKnobDials = function () {
             // Don't allow sending many requests
             setInterval(function() {
                 beingUpdated = false;
-            }, 300);
+            }, 200);
         }
 
     };

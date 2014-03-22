@@ -11,7 +11,7 @@ from house_314_project.settings import raspi_address
 # BULB_ID - Light bulb id.
 @csrf_exempt
 def set_light_bulb_intensity(request):
-    post_data = [('HTTP_INTENSITY', request.META['HTTP_INTENSITY']),('HTTP_BULB_ID', request.META['HTTP_BULB_ID']),]
+    post_data = [('HTTP_INTENSITY', request.POST['HTTP_INTENSITY']),('HTTP_BULB_ID', request.POST['HTTP_BULB_ID']),]
     result = urllib2.urlopen('http://' + raspi_address + '/api/set_light_bulb_intensity/', urllib.urlencode(post_data))
     return HttpResponse(status=result.getcode())
 
@@ -20,7 +20,7 @@ def set_light_bulb_intensity(request):
 # Will return an integer value containing the intensity.
 @csrf_exempt
 def get_light_bulb_intensity(request):
-    post_data = [('HTTP_BULB_ID', request.META['HTTP_BULB_ID']),]
+    post_data = [('HTTP_BULB_ID', request.POST['HTTP_BULB_ID']),]
     result = urllib2.urlopen('http://' + raspi_address + '/api/get_light_bulb_intensity/', urllib.urlencode(post_data))
     return HttpResponse(result.read(), status=result.getcode())
 
