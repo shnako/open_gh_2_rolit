@@ -42,11 +42,11 @@
                     <i class="fa fa-building-o"></i>
                 </div>
                 <div class="details">
-                    <div class="number">
-                        23 %
+                    <div class="number" id="comparison">
+                        <img src="/assets/img/loading.gif" alt="loading"/>
                     </div>
                     <div class="desc">
-                        Above area average
+                        <span id="comparisonDescription">Your</span> area average
                     </div>
                 </div>
             </div>
@@ -113,26 +113,22 @@
             <div class="portlet box purple">
                 <div class="portlet-title">
                     <div class="caption">
-                        <i class="fa fa-calendar"></i>General Stats
+                        <i class="fa fa-calendar"></i>Usage statistics compared to last month
                     </div>
-                    <div class="actions">
-                        <a href="javascript:;" class="btn btn-sm yellow easy-pie-chart-reload">
-                            <i class="fa fa-repeat"></i> Reload
-                        </a>
-                    </div>
+
                 </div>
                 <div class="portlet-body">
                     <div class="row">
                         <div class="col-md-4">
                             <div class="easy-pie-chart">
-                                <div class="number transactions" data-percent="55">
+                                <div class="number transactions" data-percent="12">
 												<span>
-													 +55
+													 +12
 												</span>
                                     %
                                 </div>
                                 <a class="title" href="#">
-                                    Transactions <i class="m-icon-swapright"></i>
+                                    Gas usage <i class="m-icon-swapright"></i>
                                 </a>
                             </div>
                         </div>
@@ -140,14 +136,14 @@
                         </div>
                         <div class="col-md-4">
                             <div class="easy-pie-chart">
-                                <div class="number visits" data-percent="85">
+                                <div class="number visits" data-percent="24">
 												<span>
-													 +85
+													 +24
 												</span>
                                     %
                                 </div>
                                 <a class="title" href="#">
-                                    New Visits <i class="m-icon-swapright"></i>
+                                    Electricity usage <i class="m-icon-swapright"></i>
                                 </a>
                             </div>
                         </div>
@@ -155,14 +151,14 @@
                         </div>
                         <div class="col-md-4">
                             <div class="easy-pie-chart">
-                                <div class="number bounce" data-percent="46">
+                                <div class="number bounce" data-percent="19">
 												<span>
-													 -46
+													 +19
 												</span>
                                     %
                                 </div>
                                 <a class="title" href="#">
-                                    Bounce <i class="m-icon-swapright"></i>
+                                    Costs <i class="m-icon-swapright"></i>
                                 </a>
                             </div>
                         </div>
@@ -178,7 +174,7 @@
     <div class="portlet box blue">
     <div class="portlet-title">
         <div class="caption">
-            <i class="fa fa-bell-o"></i>Notifications
+            <i class="fa fa-bell-o"></i>Suggestions
         </div>
     </div>
     <div class="portlet-body">
@@ -239,7 +235,112 @@
     </div>
 
     <!-- END PORTLET-->
+    <!-- BEGIN PORTLET-->
 
+    <div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-bell-o"></i>Power hogs
+        </div>
+    </div>
+    <div class="portlet-body">
+    <div class="scroller" style="height: 100%;" data-always-visible="1" data-rail-visible="0">
+    <ul class="feeds">
+    <li>
+        <div class="col1">
+            <div class="cont">
+                <div class="cont-col1">
+                    <div class="label label-sm label-danger">
+                        <i class="fa fa-bar-chart-o"></i>
+                    </div>
+                </div>
+                <div class="cont-col2">
+                    <div class="desc">
+                        <b>TV - Living room</b> - 40.95 kWh.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+    <li>
+
+            <div class="col1">
+                <div class="cont">
+                    <div class="cont-col1">
+                        <div class="label label-sm label-success">
+                            <i class="fa fa-bar-chart-o"></i>
+                        </div>
+                    </div>
+                    <div class="cont-col2">
+                        <div class="desc">
+                            <b>Electric hob</b> - 25.28 kWh.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </li>
+    <li>
+
+            <div class="col1">
+                <div class="cont">
+                    <div class="cont-col1">
+                        <div class="label label-sm label-success">
+                            <i class="fa fa-bar-chart-o"></i>
+                        </div>
+                    </div>
+                    <div class="cont-col2">
+                        <div class="desc">
+                            <b>Refrigerator</b> - 17.16 kWh.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </li>
+    <li>
+
+            <div class="col1">
+                <div class="cont">
+                    <div class="cont-col1">
+                        <div class="label label-sm label-success">
+                            <i class="fa fa-bar-chart-o"></i>
+                        </div>
+                    </div>
+                    <div class="cont-col2">
+                        <div class="desc">
+                            <b>TV - Bedroom</b> - 12.11 kWh.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </li>
+    <li>
+
+            <div class="col1">
+                <div class="cont">
+                    <div class="cont-col1">
+                        <div class="label label-sm label-success">
+                            <i class="fa fa-bar-chart-o"></i>
+                        </div>
+                    </div>
+                    <div class="cont-col2">
+                        <div class="desc">
+                            <b>Washing machine</b> - 9.18 kWh.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </li>
+    </ul>
+    </div>
+
+    </div>
+    </div>
+
+    <!-- END PORTLET-->
     </div>
     <div class="clearfix"></div>
     </div>
