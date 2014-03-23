@@ -47,7 +47,6 @@
         Index.initCharts(); // init index page's custom scripts
         Index.initChat();
         Index.initMiniCharts();
-        Index.initDashboardDaterange();
         Tasks.initDashboardWidget();
     });
 </script>
@@ -58,6 +57,7 @@
 
         // Get current intensity for all lightbulbs
         var url = "/controls/get_light_bulb_intensity/";
+        $("#knob-wrap").hide();
         $.post(url, {
             "HTTP_BULB_ID": 1
         }).success(function(INTENSITY) {
@@ -75,9 +75,8 @@
                 }).success(function(INTENSITY) {
                     $("#knob3").val(INTENSITY);
                     console.log("Bulb intensity has been retrieved! ID 3");
-
                     ComponentsKnobDials.init();
-
+                    $("#knob-wrap").show();
                 }).fail(function() {
                     console.log("Failed to retrieve the intensity!");
                 });
@@ -96,12 +95,25 @@
             $.post(url2).success(function(CONSUMPTION) {
                 $("#consumption").html(parseInt(CONSUMPTION) + " W");
                 $("#price").html(parseFloat(CONSUMPTION / 1000 * 0.13 * 24 * 30).toFixed(2) + " £");
+                var percentage = parseInt(CONSUMPTION / 390 * 100);
+                var outputWord;
+                if (percentage > 100) {
+                    percentage = percentage - 100;
+                    outputWord = "Above";
+                } else {
+                    percentage = 100 - percentage;
+                    outputWord = "Below";
+                }
+
+                $("#comparison").html(percentage + " %");
+                $("#comparisonDescription").html(outputWord);
+
+
                 console.log("Current consumption has been retrieved!");
             }).fail(function() {
                 console.log("Failed to retrieve current consumption!");
             });
         }, 1000);
-
 
         // Get current temperature
         var url3 = "/controls/get_temperature/";
