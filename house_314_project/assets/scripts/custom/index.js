@@ -36,24 +36,48 @@ var Index = function () {
             var totalPoints = 250;
 
             // random data generator for plot charts
-
+            livePowerUsage = [];
             function getRandomData() {
-                if (data.length > 0) data = data.slice(1);
-                // do a random walk
-                while (data.length < totalPoints) {
-                    var prev = data.length > 0 ? data[data.length - 1] : 50;
-                    var y = prev + Math.random() * 10 - 5;
-                    if (y < 0) y = 0;
-                    if (y > 100) y = 100;
-                    data.push(y);
-                }
-                // zip the generated y values with the x values
+                /*
+                var url2 = "/statistics/get_current_consumption/";
                 var res = [];
-                for (var i = 0; i < data.length; ++i) res.push([i, data[i]])
-                return res;
+                // Get current consumption
+
+
+                    $.post(url2).success(function(CONSUMPTION) {
+                        if (data.length > 25) data.pop();
+                        data.push(CONSUMPTION);
+
+                        for (var i = 0; i < data.length; ++i) res.push([i, data[i]]);
+                        //console.log(res);
+                        return res;
+                    }).fail(function() {
+                        console.log("Failed to retrieve current consumption!");
+                    });
+                */
+
+
+
+                 if (data.length > 0) data = data.slice(1);
+                 // do a random walk
+                 while (data.length < totalPoints) {
+                 var prev = data.length > 0 ? data[data.length - 1] : 50;
+                 var y = prev + Math.random() * 10 - 5;
+                 if (y < 0) y = 0;
+                 if (y > 100) y = 100;
+                 data.push(y);
+                 }
+                 // zip the generated y values with the x values
+
+
+                 var res = [];
+                 for (var i = 0; i < data.length; ++i) res.push([i, data[i]]);
+                 //console.log(res);
+                 return res;
+
             }
 
-            
+
 
             function randValue() {
                 return (Math.floor(Math.random() * (1 + 50 - 20))) + 10;
@@ -78,64 +102,64 @@ var Index = function () {
                 $('#site_statistics_loading').hide();
                 $('#site_statistics_content').show();
 
-                var plot_statistics = $.plot($("#site_statistics"), 
+                var plot_statistics = $.plot($("#site_statistics"),
 
                     [
-                    {
-                        data:visitors,
-                        lines: {
-                            fill: 0.6,
-                            lineWidth: 0,
+                        {
+                            data:visitors,
+                            lines: {
+                                fill: 0.6,
+                                lineWidth: 0,
+                            },
+                            color: ['#f89f9f']
                         },
-                        color: ['#f89f9f']
-                    },
-                    {
-                        data: visitors,
-                        points: {
-                            show: true,
-                            fill: true,
-                            radius: 5,
-                            fillColor: "#f89f9f",
-                            lineWidth: 3
+                        {
+                            data: visitors,
+                            points: {
+                                show: true,
+                                fill: true,
+                                radius: 5,
+                                fillColor: "#f89f9f",
+                                lineWidth: 3
+                            },
+                            color: '#fff',
+                            shadowSize: 0
                         },
-                        color: '#fff',
-                        shadowSize: 0
-                    },
-                    ], 
+                    ],
 
                     {
-                    
-                    xaxis: {
-                        tickLength: 0,
-                        tickDecimals: 0,                        
-                        mode: "categories",
-                        min: 2,
-                        font: {
-                            lineHeight: 14,
-                            style: "normal",
-                            variant: "small-caps",
-                            color: "#6F7B8A"
+
+                        xaxis: {
+                            tickLength: 0,
+                            tickDecimals: 0,
+                            mode: "categories",
+                            min: 2,
+                            font: {
+                                lineHeight: 14,
+                                style: "normal",
+                                variant: "small-caps",
+                                color: "#6F7B8A"
+                            }
+                        },
+                        yaxis: {
+                            ticks: 5,
+                            tickDecimals: 0,
+                            tickColor: "#eee",
+                            font: {
+                                lineHeight: 14,
+                                style: "normal",
+                                variant: "small-caps",
+                                color: "#6F7B8A"
+                            }
+                        },
+                        grid: {
+                            hoverable: true,
+                            clickable: true,
+                            tickColor: "#eee",
+                            borderColor: "#eee",
+                            borderWidth: 1
                         }
-                    },
-                    yaxis: {
-                        ticks: 5,
-                        tickDecimals: 0,
-                        tickColor: "#eee",
-                        font: {
-                            lineHeight: 14,
-                            style: "normal",
-                            variant: "small-caps",
-                            color: "#6F7B8A"
-                        }
-                    },
-                    grid: {
-                        hoverable: true,
-                        clickable: true,
-                        tickColor: "#eee",
-                        borderColor: "#eee",
-                        borderWidth: 1
-                    }
-                });
+                    });
 
                 var previousPoint = null;
                 $("#site_statistics").bind("plothover", function (event, pos, item) {
@@ -156,57 +180,58 @@ var Index = function () {
                         previousPoint = null;
                     }
                 });
-            }               
+            }
 
             if ($('#load_statistics').size() != 0) {
-                 //server load
+                //server load
                 $('#load_statistics_loading').hide();
                 $('#load_statistics_content').show();
-        
-                var updateInterval = 30;
+
+
+                var updateInterval = 300;
                 var plot_statistics = $.plot($("#load_statistics"), [getRandomData()], {
-                series: {
-                    shadowSize: 1
-                },
-                lines: {
-                    show: true,
-                    lineWidth: 0.2,
-                    fill: true,
-                    fillColor: {
-                        colors: [{
+                    series: {
+                        shadowSize: 1
+                    },
+                    lines: {
+                        show: true,
+                        lineWidth: 0.2,
+                        fill: true,
+                        fillColor: {
+                            colors: [{
                                 opacity: 0.1
                             }, {
                                 opacity: 1
                             }
-                        ]
+                            ]
+                        }
+                    },
+                    yaxis: {
+                        ticks: 4,
+                        min: 0,
+                        max: 60,
+                        tickFormatter: function (v) {
+                            return v + " W";
+                        },
+                        tickColor: "#eee"
+                    },
+                    xaxis: {
+                        show: false
+                    },
+                    colors: ["#fcb322"],
+                    grid: {
+                        tickColor: "#a8a3a3",
+                        borderWidth: 0
                     }
-                },
-                yaxis: {
-                    ticks: 4,
-                    min: 0,
-                    max: 100,
-                    tickFormatter: function (v) {
-                        return v + "%";
-                    },                    
-                    tickColor: "#eee"
-                },
-                xaxis: {
-                    show: false
-                },
-                colors: ["#fcb322"],
-                grid: {
-                    tickColor: "#a8a3a3",
-                    borderWidth: 0
-                }
                 });
-                
+
                 function statisticsUpdate() {
-                plot_statistics.setData([getRandomData()]);
-                plot_statistics.draw();
-                setTimeout(statisticsUpdate, updateInterval);
-                
+                    plot_statistics.setData([getRandomData()]);
+                    plot_statistics.draw();
+                    setTimeout(statisticsUpdate, updateInterval);
+
                 }
-                
+
                 statisticsUpdate();
 
                 $('#load_statistics').bind("mouseleave", function () {
@@ -247,6 +272,33 @@ var Index = function () {
                     [24, 17]
                 ];
 
+                var timeRanges = [
+                    "00:00 - 01:00",
+                    "01:00 - 02:00",
+                    "02:00 - 03:00",
+                    "03:00 - 04:00",
+                    "04:00 - 05:00",
+                    "05:00 - 06:00",
+                    "06:00 - 07:00",
+                    "07:00 - 08:00",
+                    "08:00 - 09:00",
+                    "09:00 - 10:00",
+                    "10:00 - 11:00",
+                    "11:00 - 12:00",
+                    "12:00 - 13:00",
+                    "13:00 - 14:00",
+                    "14:00 - 15:00",
+                    "15:00 - 16:00",
+                    "16:00 - 17:00",
+                    "17:00 - 18:00",
+                    "18:00 - 19:00",
+                    "19:00 - 20:00",
+                    "20:00 - 21:00",
+                    "21:00 - 22:00",
+                    "22:00 - 23:00",
+                    "23:00 - 00:00",
+                ];
+
                 var plot_activities = $.plot(
                     $("#site_activities"), [{
                         data: activities,
@@ -258,33 +310,33 @@ var Index = function () {
                             fill: true,
                             fillColor: {
                                 colors: [{
-                                        opacity: 1
-                                    }, {
-                                        opacity: 1
-                                    }
+                                    opacity: 1
+                                }, {
+                                    opacity: 1
+                                }
                                 ]
                             }
                         }
                     }
-                ], {
-                    series: {
-                        bars: {
-                            show: true,
-                            barWidth: 0.9
+                    ], {
+                        series: {
+                            bars: {
+                                show: true,
+                                barWidth: 0.9
+                            }
+                        },
+                        grid: {
+                            show: false,
+                            hoverable: true,
+                            clickable: false,
+                            autoHighlight: true,
+                            borderWidth: 0
+                        },
+                        yaxis: {
+                            min: 0,
+                            max: 20
                         }
-                    },
-                    grid: {
-                        show: false,
-                        hoverable: true,
-                        clickable: false,
-                        autoHighlight: true,
-                        borderWidth: 0
-                    },
-                    yaxis: {
-                        min: 0,
-                        max: 20
-                    }
-                });
+                    });
 
                 $("#site_activities").bind("plothover", function (event, pos, item) {
                     $("#x").text(pos.x.toFixed(2));
@@ -295,7 +347,9 @@ var Index = function () {
                             $("#tooltip").remove();
                             var x = item.datapoint[0].toFixed(2),
                                 y = item.datapoint[1].toFixed(2);
-                           showChartTooltip(item.pageX, item.pageY, item.datapoint[0], item.datapoint[1] + ' activities');
+                            //
+                            //showChartTooltip(item.pageX, item.pageY, item.datapoint[0], item.datapoint[1] + ' activities');
+                            showChartTooltip(item.pageX, item.pageY, item.datapoint[0], timeRanges[item.dataIndex]);
                         }
                     }
                 });
@@ -307,7 +361,7 @@ var Index = function () {
         },
 
         initMiniCharts: function () {
-             
+
             $('.easy-pie-chart .number.transactions').easyPieChart({
                 animate: 1000,
                 size: 75,
@@ -321,7 +375,7 @@ var Index = function () {
                 lineWidth: 3,
                 barColor: App.getLayoutColorCode('green')
             });
-             
+
             $('.easy-pie-chart .number.bounce').easyPieChart({
                 animate: 1000,
                 size: 75,
@@ -336,23 +390,23 @@ var Index = function () {
                     $('span', this).text(newValue);
                 });
             });
-               
+
             $("#sparkline_bar").sparkline([8,9,10,11,10,10,12,10,10,11,9,12,11,10,9,11,13,13,12], {
-                type: 'bar',
-                width: '100',
-                barWidth: 5,
-                height: '55',
-                barColor: '#35aa47',
-                negBarColor: '#e02222'}
+                    type: 'bar',
+                    width: '100',
+                    barWidth: 5,
+                    height: '55',
+                    barColor: '#35aa47',
+                    negBarColor: '#e02222'}
             );
 
             $("#sparkline_bar2").sparkline([9,11,12,13,12,13,10,14,13,11,11,12,11,11,10,12,11,10], {
-                type: 'bar',
-                width: '100',
-                barWidth: 5,
-                height: '55',
-                barColor: '#ffb848',
-                negBarColor: '#e02222'}
+                    type: 'bar',
+                    width: '100',
+                    barWidth: 5,
+                    height: '55',
+                    barColor: '#ffb848',
+                    negBarColor: '#e02222'}
             );
 
             $("#sparkline_line").sparkline([9,10,9,10,10,11,12,10,10,11,11,12,11,10,12,11,10,12], {
@@ -374,7 +428,7 @@ var Index = function () {
 
             var handleClick = function (e) {
                 e.preventDefault();
-                
+
                 var text = input.val();
                 if (text.length == 0) {
                     return;
@@ -403,10 +457,10 @@ var Index = function () {
             }
 
             /*
-            $('.scroller', cont).slimScroll({
-                scrollTo: list.height()
-            });
-            */
+             $('.scroller', cont).slimScroll({
+             scrollTo: list.height()
+             });
+             */
 
             $('body').on('click', '.message .name', function(e){
                 e.preventDefault(); // prevent click event
@@ -428,46 +482,46 @@ var Index = function () {
         initDashboardDaterange: function () {
 
             $('#dashboard-report-range').daterangepicker({
-                opens: (App.isRTL() ? 'right' : 'left'),
-                startDate: moment().subtract('days', 29),
-                endDate: moment(),
-                minDate: '01/01/2012',
-                maxDate: '12/31/2014',
-                dateLimit: {
-                    days: 60
+                    opens: (App.isRTL() ? 'right' : 'left'),
+                    startDate: moment().subtract('days', 29),
+                    endDate: moment(),
+                    minDate: '01/01/2012',
+                    maxDate: '12/31/2014',
+                    dateLimit: {
+                        days: 60
+                    },
+                    showDropdowns: false,
+                    showWeekNumbers: true,
+                    timePicker: false,
+                    timePickerIncrement: 1,
+                    timePicker12Hour: true,
+                    ranges: {
+                        'Today': [moment(), moment()],
+                        'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
+                        'Last 7 Days': [moment().subtract('days', 6), moment()],
+                        'Last 30 Days': [moment().subtract('days', 29), moment()],
+                        'This Month': [moment().startOf('month'), moment().endOf('month')],
+                        'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+                    },
+                    buttonClasses: ['btn'],
+                    applyClass: 'blue',
+                    cancelClass: 'default',
+                    format: 'MM/DD/YYYY',
+                    separator: ' to ',
+                    locale: {
+                        applyLabel: 'Apply',
+                        fromLabel: 'From',
+                        toLabel: 'To',
+                        customRangeLabel: 'Custom Range',
+                        daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+                        monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                        firstDay: 1
+                    }
                 },
-                showDropdowns: false,
-                showWeekNumbers: true,
-                timePicker: false,
-                timePickerIncrement: 1,
-                timePicker12Hour: true,
-                ranges: {
-                    'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
-                    'Last 7 Days': [moment().subtract('days', 6), moment()],
-                    'Last 30 Days': [moment().subtract('days', 29), moment()],
-                    'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
-                },
-                buttonClasses: ['btn'],
-                applyClass: 'blue',
-                cancelClass: 'default',
-                format: 'MM/DD/YYYY',
-                separator: ' to ',
-                locale: {
-                    applyLabel: 'Apply',
-                    fromLabel: 'From',
-                    toLabel: 'To',
-                    customRangeLabel: 'Custom Range',
-                    daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-                    monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                    firstDay: 1
+                function (start, end) {
+                    console.log("Callback has been called!");
+                    $('#dashboard-report-range span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
                 }
-            },
-            function (start, end) {
-                console.log("Callback has been called!");
-                $('#dashboard-report-range span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-            }
             );
 
 
